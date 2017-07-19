@@ -11,11 +11,31 @@ export class AppService {
 
   constructor(private http: Http) { }
 
-  getMode(): Promise<Status> {
-    return this.http.get(`${this.api}/0`)
+  get(id: number): Promise<Status> {
+    return this.http.get(`${this.api}/${id}`)
       .toPromise()
       .then(response => response.json().data as Status)
       .catch(this.handleError);
+  }
+
+  getMode(): Promise<Status> {
+    return this.get(0);
+  }
+
+  getLight(): Promise<Status> {
+    return this.get(1);
+  }
+
+  getAir(): Promise<Status> {
+    return this.get(2);
+  }
+
+  getPerson(): Promise<Status> {
+    return this.get(3);
+  }
+
+  getTemperature(): Promise<Status> {
+    return this.get(4);
   }
 
   update(status: Status): Promise<Status> {
