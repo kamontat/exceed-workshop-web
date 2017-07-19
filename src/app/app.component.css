@@ -18,3 +18,9 @@
     align-items: center;
     align-content: center;
 }
+
+.custom {
+    padding: 0;
+    border: none;
+    background: none;
+}

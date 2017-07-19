@@ -1,18 +1,38 @@
 <div class="main-container">
-    <div class="row">
-        <div class="col-xs-12 col-sm-6 col-md-3 center">
+    <header class="header header-1">
+        <div class="header-nav">
             <button
-                class="col-xs-12 col-sm-6 col-md-3 btn btn-primary"
-                (click)="getMode()">Open</button>
+                (click)="auto()"
+                class="custom nav-link nav-text">{{this.mode.value}}</button>
         </div>
-        <div class="col-xs-12 col-sm-6 col-md-3 center">
-            <button class="col-xs-12 col-sm-6 col-md-3 btn btn-success">Something</button>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-3 center">
-            <button class="col-xs-12 col-sm-6 col-md-3 btn btn-warning">Home</button>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-3 center">
-            <button class="col-xs-12 col-sm-6 col-md-3 btn btn-warning" disabled>Light</button>
+    </header>
+    <div class="content-container">
+        <div class="content-container">
+            <div class="content-area">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-3 center">
+                        <button
+                            class="col-xs-12 col-sm-6 col-md-3 btn btn-primary"
+                            (click)="getMode()"
+                            [disabled]="isAuto()">Open</button>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-3 center">
+                        <button
+                            class="col-xs-12 col-sm-6 col-md-3 btn btn-success"
+                            [disabled]="isAuto()">Something</button>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-3 center">
+                        <button
+                            class="col-xs-12 col-sm-6 col-md-3 btn btn-warning"
+                            [disabled]="isAuto()">Home</button>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-3 center">
+                        <button
+                            class="col-xs-12 col-sm-6 col-md-3 btn btn-warning"
+                            [disabled]="isAuto()">>Light</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -414,7 +414,10 @@ module.exports = {
       host: 'localhost',
       port: 3000,
       server: {
-        baseDir: ['public']
+        baseDir: ['public'],
+        routes: {
+          "/node_modules": "node_modules"
+        }
       }
     }),
     new BaseHrefWebpackPlugin({}),
