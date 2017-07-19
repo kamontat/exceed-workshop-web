@@ -25,6 +25,7 @@
     "@angular/platform-browser-dynamic": "~4.3.0",
     "@angular/router": "~4.3.0",
     "@webcomponents/custom-elements": "^1.0.0",
+    "angular-in-memory-web-api": "^0.3.2",
     "clarity-angular": "^0.9.13",
     "clarity-icons": "^0.9.13",
     "clarity-ui": "^0.9.13",

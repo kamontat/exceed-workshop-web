@@ -12,3 +12,9 @@
 .example-margin {
   margin: 10px;
 }
+
+.center {
+    text-align: center;
+    align-items: center;
+    align-content: center;
+}
