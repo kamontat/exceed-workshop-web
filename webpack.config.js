@@ -411,8 +411,8 @@ module.exports = {
     new BrowserSyncPlugin({
       // browse to http://localhost:3000/ during development,
       // ./public directory is being served
-      host: 'localhost',
-      port: 3000,
+      host: '0:0:0:0',
+      port: 80,
       server: {
         baseDir: ['public'],
         routes: {

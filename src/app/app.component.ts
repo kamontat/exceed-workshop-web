@@ -54,7 +54,8 @@ export class AppComponent implements OnInit {
     this.appService.update(this.light).then(status => console.log(status));
   }
 
-  opendoor(): void {
+  openDoor(): void {
+    console.log("open door");
     // TODO: open door
   }
 
