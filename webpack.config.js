@@ -412,7 +412,7 @@ module.exports = {
       // browse to http://localhost:3000/ during development,
       // ./public directory is being served
       host: '0:0:0:0',
-      port: 80,
+      port: 8080,
       server: {
         baseDir: ['public'],
         routes: {

@@ -12,11 +12,11 @@ import { Status } from './status';
 export class AppComponent implements OnInit {
   title = 'custom app';
 
-  mode: Status;
-  light: Status;
-  person: Status;
-  air: Status;
-  temperature: Status;
+  mode: Status = new Status(0, "");
+  light: Status = new Status(1, "");
+  person: Status = new Status(3, "");
+  air: Status = new Status(2, "");
+  temperature: Status = new Status(4, "");
 
   opened: boolean;
 
@@ -26,12 +26,12 @@ export class AppComponent implements OnInit {
     console.log("initial");
     this.appService.getMode().subscribe(mode => {
       console.log("mode: " + mode);
-      this.mode = mode;
+      this.mode = new Status(0, mode);
     });
-    this.appService.getLight().subscribe(light => this.light = light);
-    this.appService.getAir().subscribe(air => this.air = air);
-    this.appService.getTemperature().subscribe(temperature => this.temperature = temperature);
-    this.appService.getPerson().subscribe(person => this.person = person);
+    this.appService.getLight().subscribe(light => this.light = new Status(1, light));
+    this.appService.getAir().subscribe(air => this.air = new Status(2, air));
+    this.appService.getTemperature().subscribe(temperature => this.temperature = new Status(4, temperature));
+    this.appService.getPerson().subscribe(person => this.person = new Status(3, person));
   };
 
   auto(): void {
@@ -59,8 +59,7 @@ export class AppComponent implements OnInit {
   }
 
   openDoor(): void {
-    console.log("open door");
-    // TODO: open door
+    this.appService.openDoor().subscribe(status => console.log("open door"));
   }
 
   isAuto(): boolean {

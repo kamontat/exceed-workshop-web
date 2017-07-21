@@ -8,45 +8,49 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class AppService {
-  private headers = new Headers({ 'Content-Type': 'application/json' });
+  private headers = new Headers({
+  });
   private api = '/data/workshop';  // URL to web api
 
   constructor(private jsonp: Http) { }
 
-  get(id: number): Observable<Status> {
+  get(id: number): Observable<string> {
     return this.jsonp.request(`${this.api}/${id}`, {
       method: 'GET',
       headers: this.headers
-    })
-      .map(response => {
-        console.log("response: " + response);
-        return response.json().data as Status;
-      })
+    }).map(response => response.text());
   }
 
   set(id: number, value: string): Observable<void> {
-    return this.jsonp.request(`${this.api}/${id}/set/${value}`, { method: 'GET' })
+    return this.jsonp.request(`${this.api}/${id}/set/${value}`, {
+      method: 'GET',
+      headers: this.headers
+    })
       .map(response => { });
   }
 
-  getMode(): Observable<Status> {
+  getMode(): Observable<string> {
     return this.get(0);
   }
 
-  getLight(): Observable<Status> {
+  getLight(): Observable<string> {
     return this.get(1);
   }
 
-  getAir(): Observable<Status> {
+  getAir(): Observable<string> {
     return this.get(2);
   }
 
-  getPerson(): Observable<Status> {
+  getPerson(): Observable<string> {
     return this.get(3);
   }
 
-  getTemperature(): Observable<Status> {
+  getTemperature(): Observable<string> {
     return this.get(4);
+  }
+
+  openDoor(): Observable<void> {
+    return this.set(5, "on");
   }
 
   update(status: Status): Observable<void> {

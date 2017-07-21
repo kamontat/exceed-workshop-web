@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule, JsonpModule }           from '@angular/http';
+import { XHRBackend } from '@angular/http'
 
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 
@@ -15,6 +16,7 @@ import { AppComponent } from './app.component';
 
 import { AppService } from './app.service';
 import { DbService } from './db.service';
+import { ApiXHRBackend } from './xhr.service';
 
 import 'hammerjs';
 
@@ -33,7 +35,10 @@ import 'hammerjs';
     MdSlideToggleModule,
     ClarityModule.forRoot()
   ],
-  providers: [AppService],
+  providers: [
+    AppService,
+    { provide: XHRBackend, useClass: ApiXHRBackend }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
