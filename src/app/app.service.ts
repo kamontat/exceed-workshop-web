@@ -7,7 +7,7 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class AppService {
   private headers = new Headers({ 'Content-Type': 'application/json' });
-  private api = 'http://158.108.165.219/node/data/workshop/';  // URL to web api
+  private api = 'api/data';  // URL to web api
 
   constructor(private http: Http) { }
 
