@@ -1,56 +1,60 @@
-import { Injectable } from '@angular/core';
+import { Injectable }        from '@angular/core';
 import { Http, Headers }           from '@angular/http';
-import { Status } from './status';
+// import { HttpClient }        from '@angular/common/http';
+import { Status }            from './status';
 
-import 'rxjs/add/operator/toPromise';
+import { Observable }        from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class AppService {
   private headers = new Headers({ 'Content-Type': 'application/json' });
-  private api = 'http://158.108.165.223/data/workshop';  // URL to web api
+  private api = '/data/workshop';  // URL to web api
 
-  constructor(private http: Http) { }
+  constructor(private jsonp: Http) { }
 
-  get(id: number): Promise<Status> {
-    return this.http.get(`${this.api}/${id}`)
-      .toPromise()
-      .then(response => response.json().data as Status)
-      .catch(this.handleError);
+  get(id: number): Observable<Status> {
+    return this.jsonp.request(`${this.api}/${id}`, {
+      method: 'GET',
+      headers: this.headers
+    })
+      .map(response => {
+        console.log("response: " + response);
+        return response.json().data as Status;
+      })
   }
 
-  set(id: number, value: string): Promise<Status> {
-    return this.http.get(`${this.api}/${id}/set/${value}`)
-      .toPromise()
-      .then(response => { })
-      .catch(this.handleError);
+  set(id: number, value: string): Observable<void> {
+    return this.jsonp.request(`${this.api}/${id}/set/${value}`, { method: 'GET' })
+      .map(response => { });
   }
 
-  getMode(): Promise<Status> {
+  getMode(): Observable<Status> {
     return this.get(0);
   }
 
-  getLight(): Promise<Status> {
+  getLight(): Observable<Status> {
     return this.get(1);
   }
 
-  getAir(): Promise<Status> {
+  getAir(): Observable<Status> {
     return this.get(2);
   }
 
-  getPerson(): Promise<Status> {
+  getPerson(): Observable<Status> {
     return this.get(3);
   }
 
-  getTemperature(): Promise<Status> {
+  getTemperature(): Observable<Status> {
     return this.get(4);
   }
 
-  update(status: Status): Promise<Status> {
+  update(status: Status): Observable<void> {
     return this.set(status.id, status.value);
   }
 
-  private handleError(error: any): Promise<any> {
+  private handleError(error: any): Observable<any> {
     console.error('An error occurred', error); // for demo purposes only
-    return Promise.reject(error.message || error);
+    return null;
   }
 }

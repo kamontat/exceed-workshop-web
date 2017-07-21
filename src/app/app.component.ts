@@ -23,11 +23,15 @@ export class AppComponent implements OnInit {
   constructor(private appService: AppService) { }
 
   ngOnInit(): void {
-    this.appService.getMode().then(mode => this.mode = mode);
-    this.appService.getLight().then(light => this.light = light);
-    this.appService.getAir().then(air => this.air = air);
-    this.appService.getTemperature().then(temperature => this.temperature = temperature);
-    this.appService.getPerson().then(person => this.person = person);
+    console.log("initial");
+    this.appService.getMode().subscribe(mode => {
+      console.log("mode: " + mode);
+      this.mode = mode;
+    });
+    this.appService.getLight().subscribe(light => this.light = light);
+    this.appService.getAir().subscribe(air => this.air = air);
+    this.appService.getTemperature().subscribe(temperature => this.temperature = temperature);
+    this.appService.getPerson().subscribe(person => this.person = person);
   };
 
   auto(): void {
@@ -35,7 +39,7 @@ export class AppComponent implements OnInit {
       this.mode.value = "manual";
     else
       this.mode.value = "automatic";
-    this.appService.update(this.mode).then(status => console.log(status));
+    this.appService.update(this.mode).subscribe(status => console.log(status));
   }
 
   setAir(): void {
@@ -43,7 +47,7 @@ export class AppComponent implements OnInit {
       this.air.value = "on";
     else
       this.air.value = "off";
-    this.appService.update(this.air).then(status => console.log(status));
+    this.appService.update(this.air).subscribe(status => console.log(status));
   }
 
   setLight(): void {
@@ -51,7 +55,7 @@ export class AppComponent implements OnInit {
       this.light.value = "on";
     else
       this.light.value = "off";
-    this.appService.update(this.light).then(status => console.log(status));
+    this.appService.update(this.light).subscribe(status => console.log(status));
   }
 
   openDoor(): void {

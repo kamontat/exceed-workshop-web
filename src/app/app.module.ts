@@ -2,7 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { HttpClientModule } from '@angular/common/http';
-import { HttpModule }           from '@angular/http';
+import { HttpModule, JsonpModule }           from '@angular/http';
+
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -25,6 +26,7 @@ import 'hammerjs';
     BrowserModule,
     HttpClientModule,
     HttpModule,
+    JsonpModule,
     InMemoryWebApiModule.forRoot(DbService),
     BrowserAnimationsModule,
     NoopAnimationsModule,
