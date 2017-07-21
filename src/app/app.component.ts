@@ -23,15 +23,29 @@ export class AppComponent implements OnInit {
   constructor(private appService: AppService) { }
 
   ngOnInit(): void {
-    console.log("initial");
-    this.appService.getMode().subscribe(mode => {
-      console.log("mode: " + mode);
-      this.mode = new Status(0, mode);
-    });
-    this.appService.getLight().subscribe(light => this.light = new Status(1, light));
-    this.appService.getAir().subscribe(air => this.air = new Status(2, air));
-    this.appService.getTemperature().subscribe(temperature => this.temperature = new Status(4, temperature));
-    this.appService.getPerson().subscribe(person => this.person = new Status(3, person));
+    console.log("start initial");
+    setInterval(() => {
+      this.appService.getMode().subscribe(mode => {
+        console.log("mode: " + mode);
+        this.mode = new Status(0, mode);
+      });
+      this.appService.getLight().subscribe(light => {
+        console.log("light: " + light);
+        this.light = new Status(0, light);
+      });
+      this.appService.getAir().subscribe(air => {
+        console.log("air: " + air);
+        this.air = new Status(0, air);
+      });
+      this.appService.getTemperature().subscribe(temperature => {
+        console.log("temperature: " + temperature);
+        this.temperature = new Status(0, temperature);
+      });
+      this.appService.getPerson().subscribe(person => {
+        console.log("person: " + person);
+        this.person = new Status(0, person);
+      });
+    }, 1000 * 2);
   };
 
   auto(): void {
