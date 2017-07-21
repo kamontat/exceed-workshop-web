@@ -5,7 +5,7 @@ import { Request, XHRBackend, XHRConnection } from '@angular/http';
 export class ApiXHRBackend extends XHRBackend {
     createConnection(request: Request): XHRConnection {
         if (request.url.startsWith('/')){
-            request.url = 'http://localhost' + request.url;     // prefix base url
+            request.url = 'http://localhost:8080' + request.url;     // prefix base url
         }
         return super.createConnection(request);
     }
