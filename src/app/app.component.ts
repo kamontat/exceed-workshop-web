@@ -25,28 +25,47 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     console.log("start initial");
     setInterval(() => {
-      this.appService.getMode().subscribe(mode => {
-        console.log("mode: " + mode);
-        this.mode = new Status(0, mode);
-      });
-      this.appService.getLight().subscribe(light => {
-        console.log("light: " + light);
-        this.light = new Status(0, light);
-      });
-      this.appService.getAir().subscribe(air => {
-        console.log("air: " + air);
-        this.air = new Status(0, air);
-      });
-      this.appService.getTemperature().subscribe(temperature => {
-        console.log("temperature: " + temperature);
-        this.temperature = new Status(0, temperature);
-      });
-      this.appService.getPerson().subscribe(person => {
-        console.log("person: " + person);
-        this.person = new Status(0, person);
-      });
+      this.calculation();
     }, 1000 * 2);
   };
+
+  calculation(): void {
+    this.appService.getMode().subscribe(mode => {
+      console.log("mode: " + mode);
+      this.mode = new Status(0, mode);
+    });
+    this.appService.getLight().subscribe(light => {
+      console.log("light: " + light);
+      this.light = new Status(1, light);
+    });
+    this.appService.getAir().subscribe(air => {
+      console.log("air: " + air);
+      this.air = new Status(2, air);
+    });
+    this.appService.getTemperature().subscribe(temperature => {
+      console.log("temperature: " + temperature);
+      this.temperature = new Status(4, temperature);
+      if (this.mode.value === "automatic")
+        if (Number.parseInt(temperature) > 27) {
+          this.appService.update(new Status(2, "on"));
+        } else {
+          this.appService.update(new Status(2, "off"));
+        }
+    });
+    this.appService.getPerson().subscribe(person => {
+      console.log("person: " + person);
+      this.person = new Status(3, person);
+    });
+
+    this.appService.getLightSensor().subscribe(value => {
+      if (this.mode.value === "automatic")
+        if (Number.parseInt(value) < 550) {
+          this.appService.update(new Status(1, "on"));
+        } else {
+          this.appService.update(new Status(1, "off"));
+        }
+    });
+  }
 
   auto(): void {
     if (this.mode.value == "automatic")

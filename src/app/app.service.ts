@@ -54,6 +54,10 @@ export class AppService {
     return this.set(5, "on");
   }
 
+  getLightSensor(): Observable<string> {
+    return this.get(6);
+  }
+
   update(status: Status): Observable<void> {
     return this.set(status.id, status.value);
   }
