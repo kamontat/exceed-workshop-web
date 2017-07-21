@@ -1,24 +1,56 @@
 import { Injectable } from '@angular/core';
-import { Http }           from '@angular/http';
+import { Http, Headers }           from '@angular/http';
 import { Status } from './status';
 
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class AppService {
-  private api = 'api/data';  // URL to web api
+  private headers = new Headers({ 'Content-Type': 'application/json' });
+  private api = 'http://158.108.165.219/node/data/workshop/';  // URL to web api
 
   constructor(private http: Http) { }
 
-  getMode(): Promise<Status> {
-    return this.http.get(`${this.api}/0`)
+  get(id: number): Promise<Status> {
+    return this.http.get(`${this.api}/${id}`)
       .toPromise()
-      .then(response => {
-        console.log(response);
-        const obj = response.json().data as Status;
-        console.log(obj);
-        return obj;
-      })
+      .then(response => response.json().data as Status)
+      .catch(this.handleError);
+  }
+
+  set(id: number, value: string): Promise<Status> {
+    return this.http.get(`${this.api}/${id}/set/${value}`)
+      .toPromise()
+      .then(response => {})
+      .catch(this.handleError);
+  }
+
+  getMode(): Promise<Status> {
+    return this.get(0);
+  }
+
+  getLight(): Promise<Status> {
+    return this.get(1);
+  }
+
+  getAir(): Promise<Status> {
+    return this.get(2);
+  }
+
+  getPerson(): Promise<Status> {
+    return this.get(3);
+  }
+
+  getTemperature(): Promise<Status> {
+    return this.get(4);
+  }
+
+  update(status: Status): Promise<Status> {
+    const url = `${this.api}/${status.id}`;
+    return this.http
+      .put(url, JSON.stringify(status), { headers: this.headers })
+      .toPromise()
+      .then(() => status)
       .catch(this.handleError);
   }
 

@@ -1,18 +1,52 @@
 <div class="main-container">
-    <div class="row">
-        <div class="col-xs-12 col-sm-6 col-md-3 center">
+    <header class="header header-1">
+        <div class="header-nav">
             <button
-                class="col-xs-12 col-sm-6 col-md-3 btn btn-primary"
-                (click)="getMode()">Open</button>
+                (click)="auto()"
+                class="custom nav-link nav-text">{{this.mode ? this.mode.value : ""}}</button>
         </div>
-        <div class="col-xs-12 col-sm-6 col-md-3 center">
-            <button class="col-xs-12 col-sm-6 col-md-3 btn btn-success">Something</button>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-3 center">
-            <button class="col-xs-12 col-sm-6 col-md-3 btn btn-warning">Home</button>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-3 center">
-            <button class="col-xs-12 col-sm-6 col-md-3 btn btn-warning" disabled>Light</button>
+    </header>
+    <div class="content-container">
+        <div class="content-container">
+            <div class="content-area">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 center">
+                        <button
+                            class="col-xs-12 col-sm-6 col-md-6 col-lg-3 btn btn-primary"
+                            (click)="setAir()"
+                            [disabled]="isAuto()">Air-Condition ({{this.air.value}})</button>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 center">
+                        <button
+                            class="col-xs-12 col-sm-6 col-md-6 col-lg-3 btn btn-success"
+                            (click)="setLight()"
+                            [disabled]="isAuto()">Light ({{this.light.value}})</button>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 center">
+                        <button
+                            class="col-xs-12 col-sm-6 col-md-6 col-lg-3 btn btn-warning"
+                            (click)="openDoor()"
+                            [disabled]="isAuto()">Open-Door</button>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 center">
+                        <button
+                            class="col-xs-12 col-sm-6 col-md-6 btn btn-info-outline"
+                            (click)="open()">Status</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+    <clr-modal [(clrModalOpen)]="opened">
+        <h3 class="modal-title">Home Status</h3>
+        <div class="modal-body">
+            <p>Person: {{this.person ? this.person.value : "0"}}</p>
+            <p>Temperature: {{this.temperature.value}}</p>
+            <p>Light: {{this.light.value}}</p>
+            <p>Air condition: {{this.air.value}}</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" (click)="opened = false">Ok</button>
+        </div>
+    </clr-modal>
 </div>
