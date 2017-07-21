@@ -43,19 +43,14 @@ export class AppComponent implements OnInit {
       this.air = new Status(2, air);
     });
     this.appService.getTemperature().subscribe(temperature => {
+      console.log("temperature: " + temperature);
       this.temperature = new Status(4, temperature);
-      if (this.mode.value === "automatic") {
-	var status = "";
+      if (this.mode.value === "automatic")
         if (Number.parseInt(temperature) > 27) {
-	  status = "on";
+          this.appService.update(new Status(2, "on"));
         } else {
-	  status = "off";
+          this.appService.update(new Status(2, "off"));
         }
-	console.log("turn air " + status + " (auto)");
-	this.air.value = status;
-        this.appService.update(new Status(2, status));
-      } else 
-	console.log("air - manual");
     });
     this.appService.getPerson().subscribe(person => {
       console.log("person: " + person);
@@ -63,18 +58,16 @@ export class AppComponent implements OnInit {
     });
 
     this.appService.getLightSensor().subscribe(value => {
-      if (this.mode.value === "automatic") {
-	var status = ""
+      if (this.mode.value === "automatic")
         if (Number.parseInt(value) < 550) {
-	  status = "on"
+	  console.log("turn air on (auto)");
+          this.appService.update(new Status(1, "on"));
         } else {
-	  status = "off"
+	  console.log("turn air off (auto)");
+          this.appService.update(new Status(1, "off"));
         }
-	console.log("turn light " + status + " (auto)");
-	this.light.value = status
-	this.appService.update(new Status(1, status))
-      } else  
-        console.log("light - manual")
+      else 
+        console.log("air - manual")
     });
   }
 
