@@ -7,7 +7,7 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class AppService {
   private headers = new Headers({ 'Content-Type': 'application/json' });
-  private api = 'api/data';  // URL to web api
+  private api = 'http://158.108.165.219/node/data/workshop/';  // URL to web api
 
   constructor(private http: Http) { }
 
@@ -15,6 +15,13 @@ export class AppService {
     return this.http.get(`${this.api}/${id}`)
       .toPromise()
       .then(response => response.json().data as Status)
+      .catch(this.handleError);
+  }
+
+  set(id: number, value: string): Promise<Status> {
+    return this.http.get(`${this.api}/${id}/set/${value}`)
+      .toPromise()
+      .then(response => {})
       .catch(this.handleError);
   }
 
