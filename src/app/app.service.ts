@@ -9,6 +9,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class AppService {
   private headers = new Headers({
+
   });
   private api = '/data/workshop';  // URL to web api
 
