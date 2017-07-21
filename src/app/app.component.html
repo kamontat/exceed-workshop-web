@@ -1,37 +1,64 @@
 <div class="main-container">
     <header class="header header-1">
         <div class="header-nav">
+            <button class="custom nav-link nav-text" disabled>
+                <clr-icon shape="home" class="is-inverse"></clr-icon>
+            </button>
             <button
                 (click)="auto()"
-                class="custom nav-link nav-text">{{this.mode ? this.mode.value : ""}}</button>
+                class="custom nav-link nav-text">
+                {{this.mode ? this.mode.value : ""}}
+                </button>
         </div>
     </header>
     <div class="content-container">
         <div class="content-container">
             <div class="content-area">
                 <div class="row">
-                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 center">
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3 center">
                         <button
-                            class="col-xs-12 col-sm-6 col-md-6 col-lg-3 btn btn-primary"
+                            class="col-xs-12 col-sm-6 col-md-6 col-lg-3 btn btn-home"
                             (click)="setAir()"
-                            [disabled]="isAuto()">Air-Condition ({{this.air.value}})</button>
+                            [disabled]="isAuto()">
+                             <div><clr-icon 
+                                [ngClass]="{'is-error': this.air.value=='off', 'is-success': this.air.value == 'on'}"
+                                shape="thermometer"
+                                size="48"></clr-icon></div>
+                            <div>Air-Condition ({{this.air.value}})</div>
+                        </button>
                     </div>
-                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 center">
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3 center">
                         <button
-                            class="col-xs-12 col-sm-6 col-md-6 col-lg-3 btn btn-success"
+                            class="col-xs-12 col-sm-6 col-md-6 col-lg-3 btn btn-home"
                             (click)="setLight()"
-                            [disabled]="isAuto()">Light ({{this.light.value}})</button>
+                            [disabled]="isAuto()">
+                            <div><clr-icon 
+                                [ngClass]="{'is-error': this.light.value=='off', 'is-success': this.light.value == 'on'}"
+                                shape="lightbulb"
+                                size="48"></clr-icon></div>
+                            <div>Light ({{this.light.value}})</div>
+                        </button>
                     </div>
-                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 center">
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3 center">
                         <button
-                            class="col-xs-12 col-sm-6 col-md-6 col-lg-3 btn btn-warning"
+                            class="col-xs-12 col-sm-6 col-md-6 col-lg-3 btn btn-home"
                             (click)="openDoor()"
-                            [disabled]="isAuto()">Open-Door</button>
+                            [disabled]="isAuto()">
+                            <div><clr-icon 
+                                [ngClass]="{'is-error': this.temperature.value=='off', 'is-success': this.temperature.value == 'on'}"
+                                shape="logout"
+                                size="48"></clr-icon></div>
+                            <div>Open-Door</div>
+                        </button>
                     </div>
-                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 center">
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3 center">
+                        
                         <button
-                            class="col-xs-12 col-sm-6 col-md-6 btn btn-info-outline"
-                            (click)="open()">Status</button>
+                            class="col-xs-12 col-sm-6 col-md-6 btn btn-info-outline btn-home"
+                            (click)="open()">
+                            <div><clr-icon shape="info-standard" size="48"></clr-icon></div>
+                            <div>Status</div>
+                        </button>
                     </div>
                 </div>
             </div>
