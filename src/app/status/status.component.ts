@@ -10,7 +10,6 @@ import 'rxjs/add/operator/switchMap';
   styleUrls: ['./status.component.css']
 })
 export class StatusComponent implements OnInit {
-
   constructor(
     private route: ActivatedRoute,
     private location: Location) { }
