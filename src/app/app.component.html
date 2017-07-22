@@ -62,11 +62,15 @@
                     </div> -->
 
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 status">
-                        PERSON: {{this.person ? this.person.value : "0"}}
+                        <clr-icon shape="users"
+                            size="48"></clr-icon>
+                        <span class="status-text">PERSON: {{this.person ? this.person.value : "0"}}</span>
                     </div>
 
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 status">
-                        TEMPERATURE: {{this.temperature.value}}
+                        <clr-icon shape="asterisk"
+                            size="48"></clr-icon>
+                        <span class="status-text">TEMPERATURE: {{this.temperature.value}} ºC</span>
                     </div>
                 </div>
             </div>
