@@ -42,13 +42,13 @@
                     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3 center">
                         <button
                             class="col-xs-12 col-sm-6 col-md-6 col-lg-3 btn btn-home"
-                            (click)="openDoor()"
+                            (click)="toggleDoor()"
                             [disabled]="isAuto()">
                             <div><clr-icon 
-                                [ngClass]="{'is-error': this.temperature.value=='off', 'is-success': this.temperature.value == 'on'}"
+                                [ngClass]="{'is-error': this.door.value=='off', 'is-success': this.door.value == 'on'}"
                                 shape="logout"
                                 size="48"></clr-icon></div>
-                            <div>Open-Door</div>
+                            <div>Door ({{this.door.value}})</div>
                         </button>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3 center">
