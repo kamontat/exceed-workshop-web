@@ -71,9 +71,9 @@ export class AppComponent implements OnInit {
         }
         console.log("(air) auto: " + status);
         this.air.value = status;
-        this.appService.update(new Status(2, status));
+        this.appService.update(this.air).subscribe(status => console.log("(air) updated!"));
       } else
-        console.log("(air) auto: " + this.air.value);
+        console.log("(air) manual: " + this.air.value);
     });
 
     this.appService.getLightSensor().subscribe(value => {
@@ -86,7 +86,7 @@ export class AppComponent implements OnInit {
           status = "off"
         console.log("(light) auto: " + status);
         this.light.value = status
-        this.appService.update(new Status(1, status))
+        this.appService.update(this.light).subscribe(status => console.log("(light) updated!"));
       } else
         console.log("(light) manual: " + this.light.value)
     });
@@ -137,12 +137,12 @@ export class AppComponent implements OnInit {
 
   addPerson() {
     this.person.value = (Number.parseInt(this.person.value) + 1).toString()
-    this.appService.update(this.person).subscribe(status => console.log("person get in"));
+    this.appService.update(this.person).subscribe(status => console.log("(person) get in"));
   }
 
   removePerson() {
     this.person.value = (Number.parseInt(this.person.value) - 1).toString()
-    this.appService.update(this.person).subscribe(status => console.log("person get out"));
+    this.appService.update(this.person).subscribe(status => console.log("(person) get out"));
   }
 
   isIn(value: number): boolean {
@@ -158,7 +158,7 @@ export class AppComponent implements OnInit {
       this.mode.value = "manual";
     else
       this.mode.value = "automatic";
-    this.appService.update(this.mode).subscribe(status => console.log(status));
+    this.appService.update(this.mode).subscribe(status => {});
   }
 
   setAir(): void {
@@ -166,7 +166,7 @@ export class AppComponent implements OnInit {
       this.air.value = "on";
     else
       this.air.value = "off";
-    this.appService.update(this.air).subscribe(status => console.log(status));
+    this.appService.update(this.air).subscribe(status => {});
   }
 
   setLight(): void {
@@ -174,7 +174,7 @@ export class AppComponent implements OnInit {
       this.light.value = "on";
     else
       this.light.value = "off";
-    this.appService.update(this.light).subscribe(status => console.log(status));
+    this.appService.update(this.light).subscribe(status => {});
   }
 
   toggleDoor(): void {
@@ -182,17 +182,17 @@ export class AppComponent implements OnInit {
       this.door.value = "on";
     else
       this.door.value = "off";
-    this.appService.update(this.door).subscribe(status => console.log("door: " + status));
+    this.appService.update(this.door).subscribe(status => {});
   }
 
   openDoor(): void {
     this.door.value = "on"
-    this.appService.update(this.door).subscribe(status => console.log("open door"));
+    this.appService.update(this.door).subscribe(status => console.log("(door) open"));
   }
 
   closeDoor(): void {
     this.door.value = "off"
-    this.appService.update(this.door).subscribe(status => console.log("close door"));
+    this.appService.update(this.door).subscribe(status => console.log("(door) close"));
   }
 
   isAuto(): boolean {
