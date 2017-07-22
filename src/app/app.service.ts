@@ -54,8 +54,16 @@ export class AppService {
     return this.set(5, "on");
   }
 
+  closeDoor(): Observable<void> {
+    return this.set(5, "off");
+  }
+
   getLightSensor(): Observable<string> {
     return this.get(6);
+  }
+
+  getSonic(): Observable<string> {
+    return this.get(10);
   }
 
   update(status: Status): Observable<void> {
