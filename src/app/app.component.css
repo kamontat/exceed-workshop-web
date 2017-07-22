@@ -11,6 +11,7 @@
 }
 
 .btn-home {
+    font-size: 20px;
     padding-top: 30%;
     padding-bottom: 50%;
     background: #ffffff;
@@ -27,4 +28,14 @@
 
 div.row {
   height: 50%;
+}
+
+.status {
+    font-weight: bold;
+    font-size: 20px;
+    margin: 30px 20px 5px 20px;
+    padding: 30px;
+    background : rgb(255, 255, 255);
+    flex: 0 0 95.7%;
+    border-radius: 5px;
 }
