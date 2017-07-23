@@ -50,12 +50,16 @@ export class AppService {
     return this.get(4);
   }
 
-  openDoor(): Observable<void> {
-    return this.set(5, "on");
+  getDoor(): Observable<string> {
+    return this.get(5);
   }
 
   getLightSensor(): Observable<string> {
     return this.get(6);
+  }
+
+  getSonic(): Observable<string> {
+    return this.get(10);
   }
 
   update(status: Status): Observable<void> {

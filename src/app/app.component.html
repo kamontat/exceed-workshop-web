@@ -7,7 +7,7 @@
             <button
                 (click)="auto()"
                 class="custom nav-link nav-text">
-                {{this.mode ? this.mode.value : ""}}
+                STATUS : {{this.mode ? this.mode.value : ""}}
                 </button>
         </div>
     </header>
@@ -15,43 +15,43 @@
         <div class="content-container">
             <div class="content-area">
                 <div class="row">
-                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3 center">
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4 center">
                         <button
-                            class="col-xs-12 col-sm-6 col-md-6 col-lg-3 btn btn-home"
+                            class="col-xs-12 col-sm-6 col-md-6 col-lg-4 btn btn-home"
                             (click)="setAir()"
                             [disabled]="isAuto()">
                              <div><clr-icon 
                                 [ngClass]="{'is-error': this.air.value=='off', 'is-success': this.air.value == 'on'}"
                                 shape="thermometer"
-                                size="48"></clr-icon></div>
+                                size="72"></clr-icon></div>
                             <div>Air-Condition ({{this.air.value}})</div>
                         </button>
                     </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3 center">
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4 center">
                         <button
-                            class="col-xs-12 col-sm-6 col-md-6 col-lg-3 btn btn-home"
+                            class="col-xs-12 col-sm-6 col-md-6 col-lg-4 btn btn-home"
                             (click)="setLight()"
                             [disabled]="isAuto()">
                             <div><clr-icon 
                                 [ngClass]="{'is-error': this.light.value=='off', 'is-success': this.light.value == 'on'}"
                                 shape="lightbulb"
-                                size="48"></clr-icon></div>
+                                size="72"></clr-icon></div>
                             <div>Light ({{this.light.value}})</div>
                         </button>
                     </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3 center">
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4 center">
                         <button
-                            class="col-xs-12 col-sm-6 col-md-6 col-lg-3 btn btn-home"
-                            (click)="openDoor()"
+                            class="col-xs-12 col-sm-6 col-md-6 col-lg-4 btn btn-home"
+                            (click)="toggleDoor()"
                             [disabled]="isAuto()">
                             <div><clr-icon 
-                                [ngClass]="{'is-error': this.temperature.value=='off', 'is-success': this.temperature.value == 'on'}"
+                                [ngClass]="{'is-error': this.door.value=='off', 'is-success': this.door.value == 'on'}"
                                 shape="logout"
-                                size="48"></clr-icon></div>
-                            <div>Open-Door</div>
+                                size="72"></clr-icon></div>
+                            <div>Door ({{this.door.value}})</div>
                         </button>
                     </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3 center">
+                    <!-- <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3 center">
                         
                         <button
                             class="col-xs-12 col-sm-6 col-md-6 btn btn-info-outline btn-home"
@@ -59,6 +59,18 @@
                             <div><clr-icon shape="info-standard" size="48"></clr-icon></div>
                             <div>Status</div>
                         </button>
+                    </div> -->
+
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 status">
+                        <clr-icon shape="users"
+                            size="48"></clr-icon>
+                        <span class="status-text">PERSON: {{this.person ? this.person.value : "0"}}</span>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 status">
+                        <clr-icon shape="asterisk"
+                            size="48"></clr-icon>
+                        <span class="status-text">TEMPERATURE: {{this.temperature.value}} ºC</span>
                     </div>
                 </div>
             </div>
